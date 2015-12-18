@@ -3,6 +3,7 @@ package com.ibm.scalalab
 import akka.actor.{ActorSystem, Props}
 import akka.io.IO
 import com.ibm.scalalab.actor.{AccountHttpServiceActor, ServiceRouting}
+import com.ibm.scalalab.api.AccountSummaryService
 import com.ibm.scalalab.config.Configuration
 import spray.can.Http
 
@@ -12,7 +13,7 @@ import spray.can.Http
 object AccountSummary extends App with Configuration {
   //Create an Actor System
   implicit var system = ActorSystem("User-Banking-Service-Actor")
-
+  AccountSummaryService.createTables
   private implicit val _ = system.dispatcher
   //Create routes for Rest Service
   val accountServiceRoutes = new ServiceRouting().route

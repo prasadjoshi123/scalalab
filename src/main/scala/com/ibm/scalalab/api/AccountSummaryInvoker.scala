@@ -1,6 +1,9 @@
 package com.ibm.scalalab.api
 
 /** imports scalaxb generated package */
+
+import com.ibm.scalalab.domain.{CustomerAccountSummaryResponse, AccountSummaryResponse}
+import com.ibm.scalalab.json.AccountSummaryJsonProtocol
 import generated._
 
 import scala.concurrent.Future
@@ -23,6 +26,7 @@ object AccountSummaryInvoker {
     /** writes SOAP response to JSON format and return as a string  */
     response.onComplete(account=>{
       accountStr = AccountSummaryJsonProtocol.AccountSummaryResponseFormat.write(AccountSummaryResponse(account.get.accountId.get, account.get.accountType.get, account.get.balance.get, account.get.firstNames.get, account.get.lastName.get, account.get.customerId.get, account.get.phoneNumber.get, account.get.emailId.get)).toString()
+      AccountSummaryService.updateCustomerAccount(Seq(CustomerAccountSummaryResponse(account.get.accountId.get.toInt,account.get.customerId.get.toInt,account.get.firstNames.get, account.get.lastName.get,"943949399", account.get.accountType.get, account.get.balance.get.toDouble, account.get.phoneNumber.get, account.get.emailId.get)))
       println(accountStr)
     })
 
