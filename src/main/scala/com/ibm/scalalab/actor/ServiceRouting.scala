@@ -12,7 +12,7 @@ import scala.util.control.NonFatal
 
 /**
  * This class defines the routing path for the REST url.
- * Spray will marshall object to JSON where we set the correct response media type.
+ * Spray will marshall object to JSON, where we set the correct response media type.
  */
 class ServiceRouting(implicit executionContext: ExecutionContext) extends Directives {
 

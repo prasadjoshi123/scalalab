@@ -14,8 +14,13 @@
       <complexType name="Account">
         <sequence>
           <element name="accountId" nillable="true" type="xsd:string"/>
+          <element name="customerId" nillable="true" type="xsd:string"/>
           <element name="accountType" nillable="true" type="xsd:string"/>
           <element name="balance" nillable="true" type="xsd:string"/>
+          <element name="emailId" nillable="true" type="xsd:string"/>
+          <element name="firstNames" nillable="true" type="xsd:string"/>
+          <element name="lastName" nillable="true" type="xsd:string"/>
+          <element name="phoneNumber" nillable="true" type="xsd:string"/>
         </sequence>
       </complexType>
       <element name="getAccountSummaryReturn" type="impl:Account"/>

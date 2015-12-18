@@ -7,7 +7,7 @@ import scala.concurrent.Future
 import scalaxb.{DispatchHttpClientsAsync, Soap11ClientsAsync}
 
 /**
- * AccountSummaryInvoker object hits SOAP webservice using scalaxb to get the response and writes it to reqired response format.
+ * AccountSummaryInvoker object hits SOAP webservice using scalaxb to get the response and writes it to required response format.
  * Also, describes 'Future' which is an object holding value which may or may not exists.
  */
 object AccountSummaryInvoker {
@@ -22,13 +22,13 @@ object AccountSummaryInvoker {
 
     /** writes SOAP response to JSON format and return as a string  */
     response.onComplete(account=>{
-      accountStr = AccountSummaryJsonProtocol.AccountSummaryResponseFormat.write(AccountSummaryResponse(account.get.accountId.get,account.get.accountType.get,account.get.balance.get)).toString()
+      accountStr = AccountSummaryJsonProtocol.AccountSummaryResponseFormat.write(AccountSummaryResponse(account.get.accountId.get, account.get.accountType.get, account.get.balance.get, account.get.firstNames.get, account.get.lastName.get, account.get.customerId.get, account.get.phoneNumber.get, account.get.emailId.get)).toString()
       println(accountStr)
     })
 
-    while(!response.isCompleted){
-      Thread.sleep(1000)
-    }
+    /*   while(!response.isCompleted){
+         Thread.sleep(1000)
+       }*/
     accountStr
   }
 
