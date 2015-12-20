@@ -4,7 +4,7 @@ package com.ibm.scalalab.api
 
 import com.ibm.scalalab.domain.{CustomerAccountSummaryResponse, AccountSummaryResponse}
 import com.ibm.scalalab.json.AccountSummaryJsonProtocol
-import generated._
+import com.ibm.scalaxb._
 
 import scala.concurrent.Future
 import scalaxb.{DispatchHttpClientsAsync, Soap11ClientsAsync}

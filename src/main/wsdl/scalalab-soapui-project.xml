@@ -56,7 +56,7 @@
       <wsdlsoap:address location="http://localhost:8080/"/>
     </wsdl:port>
   </wsdl:service>
-</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/</con:endpoint><con:endpoint>http://localhost:8080/getAccountSummary</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="getAccountSummary" bindingOperationName="getAccountSummary" type="Request-Response" outputName="getAccountSummaryResponse" inputName="getAccountSummaryRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:scal="http://scala.ibm.com">
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://Gargi:8080/</con:endpoint><con:endpoint>http://localhost:8080/</con:endpoint><con:endpoint>http://localhost:8080/getAccountSummary</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="getAccountSummary" bindingOperationName="getAccountSummary" type="Request-Response" outputName="getAccountSummaryResponse" inputName="getAccountSummaryRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:scal="http://scala.ibm.com">
    <soapenv:Header/>
    <soapenv:Body>
       <scal:cust>
@@ -66,23 +66,19 @@
          <scal:phoneNumber>?</scal:phoneNumber>
       </scal:cust>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://scala.ibm.com/AccountSummary/getAccountSummaryRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:mockService port="8080" path="/" host="Gargi" name="AccountSummarySoapBinding MockService"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:properties/><con:mockOperation name="getAccountSummary" interface="AccountSummarySoapBinding" operation="getAccountSummary"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" httpResponseStatus="500" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://scala.ibm.com/AccountSummary/getAccountSummaryRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:mockService port="8080" path="/" host="Gargi" name="AccountSummarySoapBinding MockService"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:properties/><con:mockOperation name="getAccountSummary" interface="AccountSummarySoapBinding" operation="getAccountSummary"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:scal="http://scala.ibm.com">
+   <soapenv:Header/>
    <soapenv:Body>
-      <soapenv:Envelope xmlns:scal="http://scala.ibm.com">
-         <soapenv:Header/>
-         <soapenv:Body>
-            <scal:getAccountSummaryReturn>
-               <scal:accountId>2</scal:accountId>
-               <scal:customerId>2</scal:customerId>
-               <scal:accountNumber>9782345671234567</scal:accountNumber>
-               <scal:accountType>savings</scal:accountType>
-               <scal:balance>8000</scal:balance>
-               <scal:emailId>prasad.joshi1@gmail.com</scal:emailId>
-               <scal:firstNames>prasad</scal:firstNames>
-               <scal:lastName>joshi</scal:lastName>
-               <scal:phoneNumber>9373234897</scal:phoneNumber>
-            </scal:getAccountSummaryReturn>
-         </soapenv:Body>
-      </soapenv:Envelope>
-      </soapenv:Body>
+      <scal:getAccountSummaryReturn>
+         <scal:accountId>1</scal:accountId>
+         <scal:customerId>1</scal:customerId>
+         <scal:accountNumber>882387645673458</scal:accountNumber>
+         <scal:accountType>savings</scal:accountType>
+         <scal:balance>10000</scal:balance>
+         <scal:emailId>prasad.joshi1@gmail.com</scal:emailId>
+         <scal:firstNames>Prasad</scal:firstNames>
+         <scal:lastName>Joshi</scal:lastName>
+         <scal:phoneNumber>93234567456</scal:phoneNumber>
+      </scal:getAccountSummaryReturn>
+   </soapenv:Body>
 </soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://scala.ibm.com/AccountSummary/getAccountSummaryResponse"/></con:response><con:dispatchConfig/></con:mockOperation></con:mockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
