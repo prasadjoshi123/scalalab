@@ -27,12 +27,12 @@ object AccountSummaryDAO {
 
   class AccountTable(tag:Tag)extends Table[Accounts](tag,"account"){
     def id = column[Int]("id",O.PrimaryKey,O.AutoInc)
-    def aid = column[String]("aid")
+    def anumber = column[String]("anumber")
     def atype = column[String]("atype")
     def creationdate = column[String]("creationdate",Nullable)
 
     //  override def * = (id, fname, lname, mobnumber, email)
-    def * = (id, aid,atype,creationdate) <> (Accounts.tupled, Accounts.unapply _)
+    def * = (id,anumber,atype,creationdate) <> (Accounts.tupled, Accounts.unapply _)
 
   }
 
