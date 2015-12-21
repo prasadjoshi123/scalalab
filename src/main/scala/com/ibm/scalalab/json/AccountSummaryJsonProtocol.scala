@@ -21,7 +21,7 @@ import scala.concurrent.ExecutionContext.Implicits.global
  * Created by Nishant on 12/18/2015.
  */
 object AccountSummaryJsonProtocol extends DefaultJsonProtocol {
-  implicit val AccountSummaryResponseFormat = jsonFormat8(AccountSummaryResponse)
+  implicit val AccountSummaryResponseFormat = jsonFormat9(AccountSummaryResponse)
   implicit val CustomerResponseFormat = jsonFormat5(Customer)
   implicit val AccountsFormat = jsonFormat4(Accounts)
   implicit object TimestampFormat extends JsonFormat[Timestamp] {

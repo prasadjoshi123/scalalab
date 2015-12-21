@@ -15,6 +15,7 @@
         <sequence>
           <element name="accountId" nillable="true" type="xsd:string"/>
           <element name="customerId" nillable="true" type="xsd:string"/>
+          <element name="accountNumber" nillable="true" type="xsd:string"/>
           <element name="accountType" nillable="true" type="xsd:string"/>
           <element name="balance" nillable="true" type="xsd:string"/>
           <element name="emailId" nillable="true" type="xsd:string"/>
