@@ -1,11 +1,9 @@
 package com.ibm.scalalab.dao
 
-import java.sql.Timestamp
-
-import com.ibm.scalalab.domain.{CustomerAccount, Accounts, Customer}
-import slick.lifted.{ForeignKeyQuery, Tag}
+import com.ibm.scalalab.domain.{Accounts, Customer, CustomerAccount}
 import slick.driver.MySQLDriver.api._
-import slick.profile.SqlProfile.ColumnOption.Nullable
+import slick.lifted.{ForeignKeyQuery, Tag}
+import slick.profile.SqlProfile.ColumnOption.{NotNull, Nullable}
 
 
 /**
@@ -17,20 +15,19 @@ object AccountSummaryDAO {
     def id = column[Int]("id",O.PrimaryKey,O.AutoInc)
     def fname = column[String]("fname")
     def lname = column[String]("lname")
-    def mobnumber = column[String]("mobnumber")
+    def mobnumber = column[String]("mobnumber",O.Length(15),NotNull)
     def email = column[String]("email")
-
-
+    def index_mobnumber = index("index_mobnumber",mobnumber,unique = true)
     //  override def * = (id, fname, lname, mobnumber, email)
     def * = (id, fname,lname,mobnumber,email) <> (Customer.tupled, Customer.unapply _)
   }
 
   class AccountTable(tag:Tag)extends Table[Accounts](tag,"account"){
     def id = column[Int]("id",O.PrimaryKey,O.AutoInc)
-    def anumber = column[String]("anumber")
+    def anumber = column[String]("anumber" ,O.Length(10), NotNull )
     def atype = column[String]("atype")
     def creationdate = column[String]("creationdate",Nullable)
-
+    def index_anumber = index("idx_anumber",anumber,unique = true)
     //  override def * = (id, fname, lname, mobnumber, email)
     def * = (id,anumber,atype,creationdate) <> (Accounts.tupled, Accounts.unapply _)
 
