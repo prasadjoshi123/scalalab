@@ -1,21 +1,16 @@
 package com.ibm.scalalab.api
 
-import java.util.Calendar
-import java.sql.{Timestamp, Date}
-import com.ibm.scalalab.api
-import com.ibm.scalalab.dao.AccountSummaryDAO.{CustomerAccountTable, AccountTable, CustomerTable}
-import com.ibm.scalalab.domain.{CustomerAccountSummaryResponse, CustomerAccount, Accounts, Customer}
-import slick.lifted.TableQuery
+import com.ibm.scalalab.dao.AccountSummaryDAO.{AccountTable, CustomerAccountTable, CustomerTable}
+import com.ibm.scalalab.domain.{Accounts, Customer, CustomerAccount, CustomerAccountSummaryResponse}
 import slick.dbio.DBIO
-import slick.jdbc.meta.MTable
-import slick.jdbc.JdbcBackend.Database
-import slick.lifted.{ProvenShape, ForeignKeyQuery}
 import slick.driver.MySQLDriver.api._
-import slick.profile.SqlProfile.ColumnOption.{Nullable, NotNull}
-import scala.concurrent.ExecutionContext.Implicits.global
+import slick.jdbc.JdbcBackend.Database
+import slick.jdbc.meta.MTable
+import slick.lifted.TableQuery
 
+import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.duration.Duration
-import scala.concurrent.{Await, Future,ExecutionContext}
+import scala.concurrent.{Await, Future}
 
 /**
  * Created by Nishant on 12/18/2015.
@@ -132,20 +127,29 @@ object AccountSummaryService {
   }
 
   def doesCustomerAccountExist : Boolean = {
-    val tables = Await.result(db.run(MTable.getTables), Duration.Inf).toList
+    val session = db.createSession()
+    //val tables = Await.result(db.run(MTable.getTables), Duration.Inf).toList
+    val tables = Await.result(session.database.run(MTable.getTables), Duration.Inf).toList
     println(tables.map(_.name.name))
+    session.close()
     tables.map(_.name.name).contains("customeraccount")
   }
 
   def doesCustomerExist : Boolean = {
-    val tables = Await.result(db.run(MTable.getTables), Duration.Inf).toList
+    val session = db.createSession()
+    //val tables = Await.result(db.run(MTable.getTables), Duration.Inf).toList
+    val tables = Await.result(session.database.run(MTable.getTables), Duration.Inf).toList
     println(tables.map(_.name.name))
+    session.close()
     tables.map(_.name.name).contains("customer")
   }
 
   def doesAccountExist : Boolean = {
-    val tables = Await.result(db.run(MTable.getTables), Duration.Inf).toList
+    val session = db.createSession()
+    //val tables = Await.result(db.run(MTable.getTables), Duration.Inf).toList
+    val tables = Await.result(session.database.run(MTable.getTables), Duration.Inf).toList
     println(tables.map(_.name.name))
+    session.close()
     tables.map(_.name.name).contains("account")
   }
 
@@ -163,27 +167,32 @@ object AccountSummaryService {
   }
 
   def createTables = {
+    val session = db.createSession()
     if(!doesCustomerExist){
       println("Creating customer table ... :)")
-      Await.result(AccountSummaryService.db.run(AccountSummaryService.customers.schema.create),Duration.Inf)
+      //Await.result(AccountSummaryService.db.run(AccountSummaryService.customers.schema.create),Duration.Inf)
+      Await.result(session.database.run(AccountSummaryService.customers.schema.create),Duration.Inf)
       println("customer Table is created!!!")
     }else{
       println("We do not need to create customer table Again.. :)")
     }
     if(!doesAccountExist){
       println("Creating account table ... :)")
-      Await.result(AccountSummaryService.db.run(AccountSummaryService.accounts.schema.create),Duration.Inf)
+      //Await.result(AccountSummaryService.db.run(AccountSummaryService.accounts.schema.create),Duration.Inf)
+      Await.result(session.database.run(AccountSummaryService.accounts.schema.create),Duration.Inf)
       println("account Table is created!!!")
     }else{
       println("We do not need to create account table Again.. :)")
     }
     if(!AccountSummaryService.doesCustomerAccountExist){
       println("Creating customeraccount table ... :)")
-      Await.result(AccountSummaryService.db.run(AccountSummaryService.customerAccounts.schema.create),Duration.Inf)
+      //Await.result(AccountSummaryService.db.run(AccountSummaryService.customerAccounts.schema.create),Duration.Inf)
+      Await.result(session.database.run(AccountSummaryService.customerAccounts.schema.create),Duration.Inf)
       println("customeraccount Table is created!!!")
     } else{
       println("We do not need to create table Again.. :)")
     }
+    session.close()
   }
 
   def insertCustomerAccount(customerAccount:CustomerAccount)={
