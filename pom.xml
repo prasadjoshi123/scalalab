@@ -177,7 +177,7 @@
                 <groupId>org.scalaxb</groupId>
                 <artifactId>scalaxb-maven-plugin</artifactId>
                 <configuration>
-                    <packageName></packageName>
+                    <packageName>com.ibm.scalaxb</packageName>
                 </configuration>
                 <executions>
                     <execution>

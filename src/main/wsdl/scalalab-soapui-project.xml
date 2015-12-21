@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="scalalab" resourceRoot="${projectDir}" soapui-version="5.0.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="AccountSummarySoapBinding" type="wsdl" bindingName="{http://scala.ibm.com}AccountSummarySoapBinding" soapVersion="1_1" anonymous="optional" definition="BankApp.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/C:/codebase/repo/scala/scalalab/src/main/wsdl/BankApp.wsdl"><con:part><con:url>file:/C:/codebase/repo/scala/scalalab/src/main/wsdl/BankApp.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://scala.ibm.com" xmlns:impl="http://scala.ibm.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:intf="http://scala.ibm.com">
+  <wsdl:types>
+    <schema elementFormDefault="qualified" targetNamespace="http://scala.ibm.com" xmlns="http://www.w3.org/2001/XMLSchema">
+      <complexType name="Customer">
+        <sequence>
+          <element name="emailId" nillable="true" type="xsd:string"/>
+          <element name="firstNames" nillable="true" type="xsd:string"/>
+          <element name="lastName" nillable="true" type="xsd:string"/>
+          <element name="phoneNumber" nillable="true" type="xsd:string"/>
+        </sequence>
+      </complexType>
+      <element name="cust" type="impl:Customer"/>
+      <complexType name="Account">
+        <sequence>
+          <element name="accountId" nillable="true" type="xsd:string"/>
+          <element name="customerId" nillable="true" type="xsd:string"/>
+          <element name="accountNumber" nillable="true" type="xsd:string"/>
+          <element name="accountType" nillable="true" type="xsd:string"/>
+          <element name="balance" nillable="true" type="xsd:string"/>
+          <element name="emailId" nillable="true" type="xsd:string"/>
+          <element name="firstNames" nillable="true" type="xsd:string"/>
+          <element name="lastName" nillable="true" type="xsd:string"/>
+          <element name="phoneNumber" nillable="true" type="xsd:string"/>
+        </sequence>
+      </complexType>
+      <element name="getAccountSummaryReturn" type="impl:Account"/>
+    </schema>
+  </wsdl:types>
+  <wsdl:message name="getAccountSummaryRequest">
+    <wsdl:part name="cust" element="impl:cust"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAccountSummaryResponse">
+    <wsdl:part name="getAccountSummaryReturn" element="impl:getAccountSummaryReturn"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="AccountSummary">
+    <wsdl:operation name="getAccountSummary" parameterOrder="cust">
+      <wsdl:input name="getAccountSummaryRequest" message="impl:getAccountSummaryRequest"></wsdl:input>
+      <wsdl:output name="getAccountSummaryResponse" message="impl:getAccountSummaryResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AccountSummarySoapBinding" type="impl:AccountSummary">
+    <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getAccountSummary">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="getAccountSummaryRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAccountSummaryResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AccountSummaryService">
+    <wsdl:port name="AccountSummary" binding="impl:AccountSummarySoapBinding">
+      <wsdlsoap:address location="http://localhost:8080/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://Gargi:8080/</con:endpoint><con:endpoint>http://localhost:8080/</con:endpoint><con:endpoint>http://localhost:8080/getAccountSummary</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="getAccountSummary" bindingOperationName="getAccountSummary" type="Request-Response" outputName="getAccountSummaryResponse" inputName="getAccountSummaryRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:scal="http://scala.ibm.com">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <scal:cust>
+         <scal:emailId>?</scal:emailId>
+         <scal:firstNames>?</scal:firstNames>
+         <scal:lastName>?</scal:lastName>
+         <scal:phoneNumber>?</scal:phoneNumber>
+      </scal:cust>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://scala.ibm.com/AccountSummary/getAccountSummaryRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:mockService port="8080" path="/" host="Gargi" name="AccountSummarySoapBinding MockService"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:properties/><con:mockOperation name="getAccountSummary" interface="AccountSummarySoapBinding" operation="getAccountSummary"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:scal="http://scala.ibm.com">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <scal:getAccountSummaryReturn>
+         <scal:accountId>1</scal:accountId>
+         <scal:customerId>1</scal:customerId>
+         <scal:accountNumber>882387645673458</scal:accountNumber>
+         <scal:accountType>savings</scal:accountType>
+         <scal:balance>10000</scal:balance>
+         <scal:emailId>prasad.joshi1@gmail.com</scal:emailId>
+         <scal:firstNames>Prasad</scal:firstNames>
+         <scal:lastName>Joshi</scal:lastName>
+         <scal:phoneNumber>93234567456</scal:phoneNumber>
+      </scal:getAccountSummaryReturn>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://scala.ibm.com/AccountSummary/getAccountSummaryResponse"/></con:response><con:dispatchConfig/></con:mockOperation></con:mockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
